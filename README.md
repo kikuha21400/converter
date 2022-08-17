@@ -45,10 +45,12 @@ Example input.json:
 ## Build
 ```BASH
 mvn clean package
-cd target
-java -jar <jar-file> -i/--input <input.json> [-r/--rules <rules.json>]
 ```
 
+to see usage specify
+```
+java -jar <converter-jar-file> -h
+```
 ## Example
 You can run run.sh script to build project and run program with example files
 
@@ -65,24 +67,27 @@ input.json:
 ```
 
 
-rules.json:
+default.json:
 
 ```JSON
 [
   {
-    "unit_name": "km",
-    "value": 1000.0
+    "unit_name": "in",
+    "value": 0.0254
   },
   {
-    "unit_name": "mm",
-    "value": 0.001
+    "unit_name": "ft",
+    "value": 0.3048
   },
   {
-    "unit_name": "yd",
-    "value": 0.9144
+    "unit_name": "cm",
+    "value": 0.01
+  },
+  {
+    "unit_name": "m",
+    "value": 1.0
   }
 ]
-
 ```
 
 
