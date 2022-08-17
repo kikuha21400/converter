@@ -2,7 +2,6 @@ package org.example;
 
 import org.example.rules.Rule;
 import org.example.rules.Rules;
-import org.json.simple.JSONArray;
 
 
 /**
@@ -27,7 +26,7 @@ public class LenConverter {
      * @return unit object, describes destination unit name and value
      * @throws UnitNotFoundException throws if unit does not exist in rules JSONArray
      */
-    public static Unit convert(Rules rules, Unit uFrom, String uTo, double count) throws Exception {
+    public static Unit convert(Rules rules, Unit uFrom, String uTo, double count) throws UnitNotFoundException {
         //convert unit names to "rule" abstraction
         Rule fromRule = rules.getByName(uFrom.name);
         Rule toRule = rules.getByName(uTo);

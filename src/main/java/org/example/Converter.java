@@ -1,13 +1,12 @@
 package org.example;
 
 import org.example.rules.Rules;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
  * <h1> Converter utility class</h1>
  * <p> Outputs JSONObject from JSONObject input and conversion Rules JSONArray</p>
- * <p> Also performs some preparotary steps, such as converting JSON abstractions to program abstraction
+ * <p> Also performs some preparatory steps, such as converting JSON abstractions to program abstraction
  *  (Rules, Input)</p>
  */
 public class Converter {
@@ -33,7 +32,7 @@ public class Converter {
     }
 
     /**
-     * <p>Import result of conversion to string (same as sprintf)</p>
+     * <p>Import result of conversion to string (same as sprintf() in C)</p>
      * @param out JSONObject to output
      * @return JSON string
      */

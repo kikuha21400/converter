@@ -43,32 +43,38 @@ public class ConverterDemo {
 
         argParser.processArguments(args);
 
+        // print help on -h argument
         if (argParser.haveArgument("-h")){
             if (argParser.getLength() == 1) {
                 argParser.printHelp();
-                return;
             } else {
+                // if there are other arguments, print context help (format error)
                 argParser.printContextHelp();
-                return;
             }
+            return;
         }
 
+
+        // if -i specified, process input files and rules files
         if (argParser.haveArgument("-i")){
 
-            JSONObject inputData = null;
+            JSONObject inputData;
             Rules convertRules;
 
+            // the name of default rules file
             String defaultRules = "default.json";
             RulesReader rulesReader = new RulesReader(new String[] {defaultRules});
 
             try {
                 inputData = (JSONObject) (new JSONParser().parse(new FileReader(argParser.getValue("-i"))));
             } catch (IsKeyException e){
+                // if there is no value of -i argument, print context help and exit
                 argParser.printContextHelp();
                 return;
             }
 
 
+            // change default rules filename
             if (argParser.haveArgument("-c")){
                 try {
                     defaultRules = argParser.getValue("-c");
@@ -79,6 +85,7 @@ public class ConverterDemo {
 
             }
 
+            // add external rules file (can be only one file)
             if (argParser.haveArgument("-r")) {
 
                 try{
@@ -91,13 +98,16 @@ public class ConverterDemo {
             }
 
 
+            // get rules from files and save them to convertRules reference
             rulesReader.processFiles();
             convertRules = rulesReader.getRules();
 
+            // if -a specified, rewrite default rules file
             if (argParser.haveArgument("-a")){
                 rulesReader.writeTo(defaultRules);
             }
 
+            // convert and print output JSON
             JSONObject outData = Converter.convertData(inputData, convertRules);
             System.out.println(Converter.printOutput(outData));
         }

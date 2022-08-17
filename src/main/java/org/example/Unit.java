@@ -1,12 +1,10 @@
 package org.example;
 
 import org.json.simple.*;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-import java.io.*;
-import java.util.ArrayList;
-
+/**
+ * Unit Class to store info about converting units
+ */
 public class Unit{
     double value;
     String name;
@@ -23,6 +21,11 @@ public class Unit{
        return name;
     }
 
+    /**
+     * Creates JSONObject from Unit
+     * Purpose: output of program
+     * @return JSONObject, equivalent to unit in format {"name": name, "value": value}
+     */
     public JSONObject toJSON(){
         JSONObject outJSON = new JSONObject();
         outJSON.put("name", this.getName());

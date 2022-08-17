@@ -29,6 +29,11 @@ public class Rules {
 
     }
 
+    /**
+     * Invoking Collection toString() method to convert data to format
+     * [rule1, rule2 ... rule_n]
+     * @return result String
+     */
     public String toString(){
         return data.toString();
     }

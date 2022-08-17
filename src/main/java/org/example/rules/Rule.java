@@ -18,6 +18,8 @@ public class Rule {
     Rule(double meters, String name) {
         this.meters = meters;
         this.name = name;
+
+        if (this.meters == 0) throw new ArithmeticException("Unit convert value can't be 0");
     }
 
     /**
@@ -26,11 +28,7 @@ public class Rule {
      * @throws ArithmeticException - if unit convert value is 0
      */
     Rule (JSONObject obj) throws ArithmeticException {
-
-        this.meters = (Double.parseDouble("" + obj.get("value")));
-        this.name = (String) obj.get("unit_name");
-
-        if (this.meters == 0) throw new ArithmeticException("Unit convert value can't be 0");
+        this(Double.parseDouble("" + obj.get("value")), (String) obj.get("unit_name"));
     }
 
     public double getMeters() {
@@ -41,23 +39,12 @@ public class Rule {
         return this.name;
     }
 
+    /**
+     * Convert rule to string in format "{"unit_name": "name", "value": value}"
+     * @return result string
+     */
     public String toString(){
         return String.format("{\"unit_name\": \"%s\", \"value\": %s }", this.name, "" + this.meters);
-
-    }
-
-    /**
-     * <p> Export unit to JSONObject with specification {"unit_name": name, "value": meters}</p>
-     * @return result JSONObject
-     */
-    public JSONObject exportJSON(){
-        // creating temporary pointer to add value to object
-        JSONObject res = new JSONObject();
-
-        res.put("unit_name", this.name);
-        res.put("value", this.meters);
-
-        return res;
 
     }
 }
