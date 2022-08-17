@@ -1,0 +1,8 @@
+{
+  "distance":
+  {
+    "unit": "cm",
+    "value": 32
+  },
+  "convert_to": "m"
+}
